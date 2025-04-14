@@ -46,6 +46,7 @@ urlpatterns = [
     path('checkout/', _home.checkout, name='checkout'),
     path('account/',include('account.urls')),  # Include account URLs
     path('get_api/', _home.get_api, name='get_api'),  # Include account URLs
+    path('invoice/', _home.invoice, name='invoice'),  # Include account URLs
 
 
 

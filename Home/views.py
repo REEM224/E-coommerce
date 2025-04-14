@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 from django.views.decorators.csrf import csrf_exempt
 import requests
+import random
+from django.shortcuts import get_object_or_404, redirect
 
 
 # Create your views here.
@@ -55,15 +57,34 @@ def add_to_cart(reauest):
     return JsonResponse({'cart_count': reauest.session['cart_count']})
 
 @login_required
-@csrf_exempt  # أو احذفها نهائياً
+@csrf_exempt
 def checkout(request):
-    if 'cart_count' not in request.session:
-        request.session['cart_count'] = 0
-    data = {
-        'cart_count': request.session['cart_count'],
-    }
-    template = loader.get_template('checkout.html')
-    return HttpResponse(template.render(data, request))
+    if request.method == "POST":
+        cart = request.session.get('cart', [])
+        total = 0
+        for item in cart:
+            item['subtotal'] = item['price'] * item['quantity']
+            total += item['subtotal']
+
+        invoice = {
+            'id': random.randint(1, 9999),
+            'customer_name': request.POST.get('fullname', request.user.username),
+            'total_amount': total,
+            'items': [],
+        }
+
+        for item in cart:
+            invoice['items'].append({
+                'name': item['name'],
+                'price': item['subtotal'],
+            })
+
+        request.session['invoice'] = invoice
+        return redirect('invoice')  # توجيه لصفحة الفاتورة بعد الدفع
+
+    return render(request, 'checkout.html')
+
+
 
 def get_api(request):
      api_url = 'https://fakestoreapi.com/products' 
@@ -76,3 +97,9 @@ def get_api(request):
      template = loader.get_template('get_api.html')
      return render(request, 'get_api.html', {'api_data': data})
 
+def invoice(request):
+    invoice = request.session.get('invoice', None)
+    if invoice:
+        return render(request, 'invoice.html', {'invoice': invoice})
+    else:
+        return HttpResponse("No invoice found.")

@@ -65,22 +65,5 @@
     </div>
 </div>
 
-<!-- SweetAlert Script -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    document.getElementById("checkout-form").addEventListener("submit", function (e) {
-        e.preventDefault();
 
-        Swal.fire({
-            title: 'تم الدفع بنجاح!',
-            text: 'شكرًا لتسوقك معنا ❤️',
-            icon: 'success',
-            confirmButtonText: 'العودة للصفحة الرئيسية'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = "{% url 'showland' %}";
-            }
-        });
-    });
-</script>
 {% endblock %}
