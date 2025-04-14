@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 style="color: blueviolet;" class="text-end mt-5">مرحبا بكم في متجر الوان</h1>
+            <small class="text-center">متجر الوان يقدم لكم افضل العروض والخصومات على جميع المنتجات</small>
+        </div>
+    </div>
+
+<!--
+
+<div class="row mt-5">
+    <div class="col d-flex justify-content-center">
+        <div class="row">
+          
+            <div class="col">
+                <a href="{% url 'list_electronic' %}" style="text-decoration: none;">
+                    <div class="card" style="width: 300px;">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col d-flex align-items-center">
+                                    <h3 class="text-primary">الالكترونيات</h3>
+                                </div>
+                                <div class="col text-center">
+                                    <i class="fa fa-laptop text-primary" aria-hidden="true" style="font-size: 70px;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+          
+            <div class="col">
+                <a href="{% url 'list_beauty' %}" style="text-decoration: none;">
+                    <div class="card" style="width: 300px;">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col d-flex align-items-center">
+                                    <h3 class="text-success">اثاث منزلي</h3>
+                                </div>
+                                <div class="col text-center">
+                                    <i class="fa fa-bed text-success" aria-hidden="true" style="font-size: 70px;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col d-flex justify-content-center">
+        <div class="row">
+            
+         
+            <div class="col">
+                <a href="{% url 'list_beauty' %}" style="text-decoration: none;">
+                    <div class="card" style="width: 300px;">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col d-flex align-items-center">
+                                    <h3 class="text-warning">ادوات المطبخ</h3>
+                                </div>
+                                <div class="col text-center">
+                                    <i class="fa fa-cutlery text-warning" aria-hidden="true" style="font-size: 70px;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+         
+            <div class="col">
+                <a href="{% url 'list_beauty' %}" style="text-decoration: none;">
+                    <div class="card" style="width: 300px;">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col d-flex align-items-center">
+                                    <h3 style="color: blueviolet;">ادوات التجميل</h3>
+                                </div>
+                                <div class="col text-center">
+                                    <i class="fa fa-paint-brush" aria-hidden="true" style="font-size: 70px; color: blueviolet;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+-->
+
+<div class="row d-flex justify-content-center mt-5">
+    {% for item in categories %}
+    <div class="col-6 mb-3">
+        <a href="{% url 'list_products' id=item.id %}">
+            <div class="card" style="width: 500px;">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                        <h5 class="card-title">{{ item.name }}</h5>
+                        </div>
+                        <div class="col">
+                            <i class="{{ item.icon }}" arial-hidden="true" style="font-size: 70px;"></i>
+    
+                        </div>
+                    </div>
+    
+                </div>
+    
+            </div>
+
+
+        </a>
+       
+
+    </div>
+    {% endfor %}
+
+</div>
+</div>
+
+{% endblock %}

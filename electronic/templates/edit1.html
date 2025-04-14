@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row">
+    <div class="col">
+        <div class="card" style="width: 100%;">
+            <div class="card-body">
+                <form action="{% url 'update' %}" method="POST">
+                    {% csrf_token %}
+                <div class="row mt-3">
+                    <div class="col">
+                        <input type="hidden" name="id" value="{{ product.id }}">
+                        <label class="form-label">الاسم </label>
+                        <input type="text" name="name" class="form-control" value="{{product.name}}">
+                    </div>
+                    <div class="col">
+                        <label class="form-label"> اللون </label>
+                        <input type="text" name="color" class="form-control" value="{{ product.color}}">
+                    </div>
+                    <div class="col">
+                        <label class="form-label"> السعر</label>
+                        <input type="text" name="price" class="form-control" value="{{ product.price}}">
+                    </div>
+
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <label class="form-label">الكمية </label>
+                        <input type="text" name="quintity" class="form-control" value="{{ product.quintity}}">
+                    </div>
+                    <div class="col">
+                        <label class="form-label">الضريبة</label>
+                        <input type="text" name="tax" class="form-control" value="{{ product.tax}}">
+                    </div>
+                    <div class="col">
+                        <label class="form-label">الاجمالي</label>
+                        <input type="text" name="total" class="form-control" value="{{ product.total}}">
+                    </div>
+
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <label class="form-label">الصافي</label>
+                        <input type="text" name="net" class="form-control" value="{{ product.net}}">
+                    </div>
+
+                </div>
+                <button type="submit" class="btn btn-success ">ارسال</button>
+                </form>
+                
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

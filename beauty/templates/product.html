@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+{% for item in prodkey %}
+<p>{{ item.id }}</p>
+<p>{{ item.name }}</p>
+<p>{{ item.color }}</p>
+  {% endfor %}
+{% endblock %}

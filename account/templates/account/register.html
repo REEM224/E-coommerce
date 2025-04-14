@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<p class="text-center fs-4 fw-bold mt-4">تسجيل حساب جديد</p>
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 rounded-4"
+                 style="background-image: linear-gradient(90deg, #A100FFFF 0%, #71C4FFFF 100%);">
+                <div class="card-header bg-primary text-white text-center rounded-top-4">
+                    <h4 class="mb-0">إنشاء حساب جديد</h4>
+                </div>
+                <div class="card-body p-4" style="background-color: rgba(255, 255, 255, 0.85); border-radius: 0 0 1rem 1rem;">
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label for="id_username" class="form-label">اسم المستخدم</label>
+                            <input type="text" name="username" class="form-control bg-light" id="id_username" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="id_email" class="form-label">البريد الإلكتروني</label>
+                            <input type="email" name="email" class="form-control bg-light" id="id_email" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="id_password1" class="form-label">كلمة المرور</label>
+                            <input type="password" name="password1" class="form-control bg-light" id="id_password1" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="id_password2" class="form-label">تأكيد كلمة المرور</label>
+                            <input type="password" name="password2" class="form-control bg-light" id="id_password2" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-success btn-lg mt-2 w-100 shadow-sm">تسجيل جديد</button>
+                    </form>
+
+                    <div class="text-center mt-3">
+                        <p>هل لديك حساب؟ 
+                            <a href="{% url 'login' %}" style="color: rgb(217, 0, 0);">سجّل الدخول</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

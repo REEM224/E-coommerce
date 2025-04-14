@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<p>مرحبا بكم في صفحة تفاصيل المنتج</p>
+
+<div class="container">
+    <div class="row mt-5 my-5">
+        <div class="col-sm-6 col-md-6 ">
+            <div class="card">
+                <div class="card-body">
+                    <img src="{{product.image.url}}" class="img-fluid product-img rounded" alt="{{ product.name }}" style="height: 500px; object-fit: cover;">
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-6 col-md-6 ">
+            <div class="card product-card p-4">
+                    <h5 class="card-title">اسم المنتج: {{product.name}}</h5>
+                    <p class="text-muted">اسم الفئة : {{product.categories.name}}</p>
+               
+
+            </div>
+            <div class="mb-3 mt-3">
+                <span class="h4 text-success fw-bold">{{product.price}}</span>
+                <small class="text-muted text-decoration-line-trougth ms-2">ر.س</small>
+            </div>
+
+            <div class="card-text">
+                وصف المنتج او الملاحظات
+                <br>
+                <br>
+
+            </div>
+            <ul class="list-group list-flush mb-3">
+                <li class="list-group-item">الكمية : {{product.quintity}}</li>
+                <li class="list-group-item">اللون : {{product.color}}</li>
+
+                
+            </ul>
+            <button class="btn btn-primary btn-lg" onclick="addcart()">اضف الى السلة</button>
+            <a href="{% url 'checkout' %}" class="btn btn-danger btn-lg"> مواصلة الشراء</a>
+            
+        
+
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

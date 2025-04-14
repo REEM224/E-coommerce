@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<p>مرحبا بكم في صفحة قوائم المنتجات</p>
+<div
+    class="container">
+    <h1>قائمة المنتجات</h1>
+
+    <div class="row">
+        {% for item in product %}
+        <div class="col-md-4 mb-3">
+            <div class="card h-100">
+                    {% if item.image %}
+                    <img src="{{ item.image.url}}" class="card-img-top"  alt="{{item.name}}"  style="height: 200px; object-fit: cover;">
+                    {% else %}
+                    <img src="https://img.freepik.com/free-vector/oops-404-error-with-broken-robot-concept-illustration_114360-1932.jpg?t=st=1744495590~exp=1744499190~hmac=24789e2185c156dbf512bcaa90eccca618427b5c01db92697d2fef1e64340498&w=1380"  class="card-img-top" alt="{{item.name}}" style="height: 200px; object-fit: cover;">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{item.name}}</h5>
+                        <h5 class="badge bg-danger">{{item.color}}</h5>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col">
+                                <p class="card-text">السعر: {{item.price}} ريال</p>
+                            </div>
+                            <div class="col">
+                                <a href="{% url 'productdetails' id=item.id %}" class="btn btn-info">تفاصيل المنتج</a>
+                            </div>
+
+
+                        </div>
+                        
+
+                    </div>
+
+             
+               
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}
